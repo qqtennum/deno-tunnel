@@ -1,1 +1,294 @@
-const a0_0x609f73=a0_0x43ee;(function(_0x488461,_0xc11791){const _0x3cd910=a0_0x43ee,_0xd6ccb4=_0x488461();while(!![]){try{const _0x2fe1a0=parseInt(_0x3cd910(0x16b))/0x1*(parseInt(_0x3cd910(0x13e))/0x2)+parseInt(_0x3cd910(0x121))/0x3*(-parseInt(_0x3cd910(0x142))/0x4)+-parseInt(_0x3cd910(0x13f))/0x5*(-parseInt(_0x3cd910(0x155))/0x6)+-parseInt(_0x3cd910(0x15b))/0x7*(parseInt(_0x3cd910(0x14a))/0x8)+parseInt(_0x3cd910(0x135))/0x9*(-parseInt(_0x3cd910(0x15a))/0xa)+parseInt(_0x3cd910(0x15e))/0xb+-parseInt(_0x3cd910(0x15c))/0xc;if(_0x2fe1a0===_0xc11791)break;else _0xd6ccb4['push'](_0xd6ccb4['shift']());}catch(_0x47bf9b){_0xd6ccb4['push'](_0xd6ccb4['shift']());}}}(a0_0x3663,0x4160a));const UUID=(Deno[a0_0x609f73(0x150)][a0_0x609f73(0x15d)](a0_0x609f73(0x11d))||'')[a0_0x609f73(0x131)]()[a0_0x609f73(0x14d)](),NAME=Deno['env'][a0_0x609f73(0x15d)](a0_0x609f73(0x158))||'deno-vless',DEFAULT_HOST=Deno[a0_0x609f73(0x150)][a0_0x609f73(0x15d)]('HOST')||'',WS_PATH=Deno[a0_0x609f73(0x150)][a0_0x609f73(0x15d)]('WS_PATH')||'/vless',IS_DENO_DEPLOY=Boolean(Deno['env']['get'](a0_0x609f73(0x12d)));(!UUID||!isValidUUID(UUID))&&console[a0_0x609f73(0x11e)]('Please\x20set\x20a\x20valid\x20UUID\x20env\x20var\x20before\x20using\x20the\x20proxy.');Deno['serve'](IS_DENO_DEPLOY?handleRequest:{'port':Number(Deno[a0_0x609f73(0x150)][a0_0x609f73(0x15d)]('PORT')||a0_0x609f73(0x13b))},handleRequest);async function handleRequest(_0x52d1ae){const _0x16bfcf=a0_0x609f73;try{const _0x3f5ef3=new URL(_0x52d1ae[_0x16bfcf(0x129)]),_0x440cd6=_0x52d1ae['headers']['get'](_0x16bfcf(0x156))||DEFAULT_HOST;if((_0x52d1ae['headers']['get'](_0x16bfcf(0x160))||'')['toLowerCase']()==='websocket'){if(_0x3f5ef3[_0x16bfcf(0x153)]!==WS_PATH)return text(_0x16bfcf(0x13c),0x194);if(typeof Deno[_0x16bfcf(0x136)]!==_0x16bfcf(0x167))return text(_0x16bfcf(0x157),0x1f5);return handleVlessWebSocket(_0x52d1ae);}if(_0x3f5ef3[_0x16bfcf(0x153)]==='/')return text(_0x16bfcf(0x132),0xc8);if(_0x3f5ef3[_0x16bfcf(0x153)][_0x16bfcf(0x14d)]()==='/'+UUID){const _0x40efe6=buildSubscription(UUID,_0x440cd6,_0x3f5ef3),_0x3e351=_0x3f5ef3[_0x16bfcf(0x134)][_0x16bfcf(0x139)](_0x16bfcf(0x122))||_0x3f5ef3[_0x16bfcf(0x134)][_0x16bfcf(0x139)](_0x16bfcf(0x14b));return new Response(_0x3e351?btoa(_0x40efe6):_0x40efe6,{'headers':{'content-type':_0x16bfcf(0x161),'profile-update-interval':'24'}});}return text(_0x16bfcf(0x13c),0x194);}catch(_0x47f316){return text(_0x47f316?.[_0x16bfcf(0x123)]||String(_0x47f316),0x1f4);}}function handleVlessWebSocket(_0x303785){const _0x25a455=a0_0x609f73,{socket:_0x5830b5,response:_0x47ebbb}=Deno[_0x25a455(0x133)](_0x303785);let _0x1a7165=null,_0x27aa21=null,_0x3aafc3=!![],_0x294dda=Promise[_0x25a455(0x16d)]();_0x5830b5[_0x25a455(0x137)]=_0x25a455(0x141),_0x5830b5[_0x25a455(0x11b)]=()=>{const _0x3303ed=_0x25a455,_0x5ad492=_0x303785['headers'][_0x3303ed(0x15d)]('sec-websocket-protocol')||'';if(_0x5ad492){const _0x4fea66=base64UrlToUint8Array(_0x5ad492);if(_0x4fea66?.['byteLength'])_0xc33287(_0x4fea66,_0x5830b5,!![])['catch'](()=>safeClose(_0x5830b5));}},_0x5830b5['onmessage']=_0x26a949=>{const _0x1a6ee7=_0x25a455;_0x294dda=_0x294dda[_0x1a6ee7(0x147)](()=>_0xc33287(toUint8Array(_0x26a949[_0x1a6ee7(0x130)]),_0x5830b5,_0x3aafc3))[_0x1a6ee7(0x147)](()=>{_0x3aafc3=![];})[_0x1a6ee7(0x151)](_0x28a428=>{const _0x16b606=_0x1a6ee7;console[_0x16b606(0x154)](_0x16b606(0x12f),_0x28a428),_0x363d82();});},_0x5830b5[_0x25a455(0x124)]=_0x363d82,_0x5830b5['onerror']=_0x363d82;async function _0xc33287(_0x4a0361,_0x471362,_0x28039b){const _0x387e97=_0x25a455;if(!_0x4a0361?.['byteLength'])return;if(!_0x28039b){if(!_0x27aa21)throw new Error(_0x387e97(0x164));await _0x27aa21[_0x387e97(0x12e)](_0x4a0361);return;}const _0x57f521=parseVlessHeader(_0x4a0361,UUID);if(_0x57f521['hasError'])throw new Error(_0x57f521['message']);if(_0x57f521[_0x387e97(0x128)])throw new Error(_0x387e97(0x145));_0x1a7165=await Deno[_0x387e97(0x136)]({'hostname':_0x57f521[_0x387e97(0x159)],'port':_0x57f521[_0x387e97(0x120)]}),_0x27aa21=_0x1a7165[_0x387e97(0x165)]['getWriter']();const _0x1b2179=_0x4a0361[_0x387e97(0x119)](_0x57f521[_0x387e97(0x125)]);if(_0x1b2179[_0x387e97(0x162)]>0x0)await _0x27aa21['write'](_0x1b2179);pipeRemoteToWebSocket(_0x1a7165,_0x471362,new Uint8Array([_0x57f521[_0x387e97(0x15f)],0x0]))[_0x387e97(0x151)](_0x2b75f8=>{const _0x560904=_0x387e97;console['error'](_0x560904(0x143),_0x2b75f8),_0x363d82();});}function _0x363d82(){try{_0x27aa21?.['releaseLock']();}catch(_0x3651e8){}try{_0x1a7165?.['close']();}catch(_0x4ea2ab){}safeClose(_0x5830b5);}return _0x47ebbb;}async function pipeRemoteToWebSocket(_0x4548a3,_0x1c8812,_0x50a1ac){const _0x117c05=a0_0x609f73;let _0x31a2a3=!![];for await(const _0x55ff6b of _0x4548a3[_0x117c05(0x11f)]){if(_0x1c8812[_0x117c05(0x126)]!==WebSocket[_0x117c05(0x168)])break;if(_0x31a2a3){const _0x4e64f7=new Uint8Array(_0x50a1ac['byteLength']+_0x55ff6b[_0x117c05(0x162)]);_0x4e64f7[_0x117c05(0x140)](_0x50a1ac,0x0),_0x4e64f7[_0x117c05(0x140)](_0x55ff6b,_0x50a1ac[_0x117c05(0x162)]),_0x1c8812[_0x117c05(0x127)](_0x4e64f7),_0x31a2a3=![];}else _0x1c8812[_0x117c05(0x127)](_0x55ff6b);}safeClose(_0x1c8812);}function parseVlessHeader(_0x201c1b,_0xf1eba7){const _0x53b870=a0_0x609f73;if(_0x201c1b[_0x53b870(0x162)]<0x18)return{'hasError':!![],'message':_0x53b870(0x163)};const _0x5a5aa2=_0x201c1b[0x0],_0x3ffdb5=stringifyUUID(_0x201c1b[_0x53b870(0x119)](0x1,0x11));if(_0x3ffdb5!==_0xf1eba7[_0x53b870(0x14d)]())return{'hasError':!![],'message':'invalid\x20UUID'};const _0x46b56c=_0x201c1b[0x11],_0x16bd1c=0x12+_0x46b56c,_0x351a4e=_0x201c1b[_0x16bd1c],_0x26e1c7=_0x351a4e===0x1,_0x35ec06=_0x351a4e===0x2;if(!_0x26e1c7&&!_0x35ec06)return{'hasError':!![],'message':_0x53b870(0x152)+_0x351a4e};const _0x111935=_0x16bd1c+0x1,_0x1ee4c9=new DataView(_0x201c1b[_0x53b870(0x11a)],_0x201c1b[_0x53b870(0x14e)]+_0x111935,0x2)[_0x53b870(0x16a)](0x0),_0x1aa8d8=_0x111935+0x2,_0x5128cb=_0x201c1b[_0x1aa8d8];let _0x1b8164=_0x1aa8d8+0x1,_0x572636='';if(_0x5128cb===0x1)_0x572636=Array[_0x53b870(0x166)](_0x201c1b[_0x53b870(0x119)](_0x1b8164,_0x1b8164+0x4))[_0x53b870(0x16c)]('.'),_0x1b8164+=0x4;else{if(_0x5128cb===0x2){const _0x57d761=_0x201c1b[_0x1b8164];_0x1b8164+=0x1,_0x572636=new TextDecoder()[_0x53b870(0x12c)](_0x201c1b['slice'](_0x1b8164,_0x1b8164+_0x57d761)),_0x1b8164+=_0x57d761;}else{if(_0x5128cb===0x3){const _0x1e1b43=[];for(let _0x4a48ae=0x0;_0x4a48ae<0x8;_0x4a48ae++){_0x1e1b43['push'](new DataView(_0x201c1b[_0x53b870(0x11a)],_0x201c1b[_0x53b870(0x14e)]+_0x1b8164+_0x4a48ae*0x2,0x2)['getUint16'](0x0)[_0x53b870(0x14f)](0x10));}_0x572636=_0x1e1b43[_0x53b870(0x16c)](':'),_0x1b8164+=0x10;}else return{'hasError':!![],'message':_0x53b870(0x12b)+_0x5128cb};}}if(!_0x572636||!_0x1ee4c9)return{'hasError':!![],'message':_0x53b870(0x169)};return{'hasError':![],'version':_0x5a5aa2,'isUdp':_0x35ec06,'address':_0x572636,'port':_0x1ee4c9,'rawDataIndex':_0x1b8164};}function buildSubscription(_0x3739b1,_0x58b992,_0x104252){const _0x4c1ef7=a0_0x609f73,_0x2f33f1=_0x104252[_0x4c1ef7(0x134)][_0x4c1ef7(0x15d)](_0x4c1ef7(0x13d))||'tls',_0x2f2cbb=_0x104252[_0x4c1ef7(0x134)][_0x4c1ef7(0x15d)]('port')||(_0x2f33f1===_0x4c1ef7(0x11c)?_0x4c1ef7(0x148):'80'),_0x4754c3=_0x104252[_0x4c1ef7(0x134)][_0x4c1ef7(0x15d)](_0x4c1ef7(0x138))||WS_PATH;return'vless://'+_0x3739b1+'@'+_0x58b992+':'+_0x2f2cbb+'?encryption=none&security='+_0x2f33f1+'&type=ws&host='+encodeURIComponent(_0x58b992)+_0x4c1ef7(0x12a)+encodeURIComponent(_0x4754c3)+'#'+encodeURIComponent(NAME);}function stringifyUUID(_0x401628){const _0x2edeaa=a0_0x609f73,_0x229921=Array[_0x2edeaa(0x166)](_0x401628,_0x5515cf=>_0x5515cf['toString'](0x10)[_0x2edeaa(0x13a)](0x2,'0'));return _0x229921[_0x2edeaa(0x119)](0x0,0x4)['join']('')+'-'+_0x229921['slice'](0x4,0x6)['join']('')+'-'+_0x229921[_0x2edeaa(0x119)](0x6,0x8)[_0x2edeaa(0x16c)]('')+'-'+_0x229921[_0x2edeaa(0x119)](0x8,0xa)[_0x2edeaa(0x16c)]('')+'-'+_0x229921[_0x2edeaa(0x119)](0xa,0x10)[_0x2edeaa(0x16c)]('');}function isValidUUID(_0x23ed0a){const _0x5a4ca3=a0_0x609f73;return/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i[_0x5a4ca3(0x14c)](_0x23ed0a);}function toUint8Array(_0x2ec100){const _0x40fdb3=a0_0x609f73;if(_0x2ec100 instanceof Uint8Array)return _0x2ec100;if(_0x2ec100 instanceof ArrayBuffer)return new Uint8Array(_0x2ec100);if(typeof _0x2ec100===_0x40fdb3(0x149))return new TextEncoder()['encode'](_0x2ec100);return new Uint8Array(_0x2ec100);}function a0_0x43ee(_0x2793e6,_0x11ba5f){_0x2793e6=_0x2793e6-0x119;const _0x366322=a0_0x3663();let _0x43eeac=_0x366322[_0x2793e6];return _0x43eeac;}function base64UrlToUint8Array(_0x598249){const _0x1353a5=a0_0x609f73;try{return Uint8Array['from'](atob(_0x598249[_0x1353a5(0x144)](/-/g,'+')[_0x1353a5(0x144)](/_/g,'/')),_0x21be6c=>_0x21be6c['charCodeAt'](0x0));}catch(_0x2de349){return undefined;}}function safeClose(_0x28a64b){const _0x15f1e2=a0_0x609f73;try{if(_0x28a64b[_0x15f1e2(0x126)]===WebSocket[_0x15f1e2(0x168)]||_0x28a64b['readyState']===WebSocket[_0x15f1e2(0x146)])_0x28a64b['close']();}catch(_0x5bc097){}}function text(_0x30b94c,_0x2be8b0=0xc8){return new Response(_0x30b94c,{'status':_0x2be8b0,'headers':{'content-type':'text/plain;charset=utf-8'}});}function a0_0x3663(){const _0x51cc93=['&path=','unsupported\x20address\x20type:\x20','decode','DENO_DEPLOYMENT_ID','write','websocket\x20message\x20error:','data','trim','200\x20OK','upgradeWebSocket','searchParams','420246nOUOeP','connect','binaryType','path','has','padStart','8000','Not\x20found','security','599154WvojUe','35lDMbfS','set','arraybuffer','12DQWsvs','remote\x20pipe\x20error:','replace','UDP\x20is\x20not\x20supported\x20in\x20this\x20minimal\x20version','CONNECTING','then','443','string','8opQBkd','b64','test','toLowerCase','byteOffset','toString','env','catch','unsupported\x20command:\x20','pathname','error','320304etlYJN','host','This\x20runtime\x20does\x20not\x20support\x20outbound\x20TCP\x20sockets.','NAME','address','10oUyklQ','48748UOeUrr','2163288tmLMPt','get','3672394ECJaAs','version','upgrade','text/plain;charset=utf-8','byteLength','invalid\x20VLESS\x20packet','remote\x20socket\x20is\x20not\x20ready','writable','from','function','OPEN','empty\x20target\x20address\x20or\x20port','getUint16','1NvMMdT','join','resolve','slice','buffer','onopen','tls','UUID','warn','readable','port','505401imPLpR','base64','stack','onclose','rawDataIndex','readyState','send','isUdp','url'];a0_0x3663=function(){return _0x51cc93;};return a0_0x3663();}
+const UUID = (Deno.env.get("UUID") || "").trim().toLowerCase();
+const NAME = Deno.env.get("NAME") || "edge-link";
+const DEFAULT_HOST = Deno.env.get("HOST") || "";
+const WS_PATH = Deno.env.get("WS_PATH") || "/link";
+const IS_DENO_DEPLOY = Boolean(Deno.env.get("DENO_DEPLOYMENT_ID"));
+
+if (!UUID || !isValidUUID(UUID)) {
+  console.warn("Please set a valid UUID env var before using the proxy.");
+}
+
+if (IS_DENO_DEPLOY) {
+  Deno.serve(handleRequest);
+} else {
+  Deno.serve({ port: Number(Deno.env.get("PORT") || "8000") }, handleRequest);
+}
+
+async function handleRequest(request) {
+  try {
+    const url = new URL(request.url);
+    const host = request.headers.get("host") || DEFAULT_HOST;
+    const upgrade = request.headers.get("upgrade") || "";
+    const earlyDataHeader = request.headers.get("sec-websocket-protocol") || "";
+
+    if (upgrade.toLowerCase() === "websocket") {
+      if (url.pathname !== WS_PATH) return text("Not found", 404);
+      if (typeof Deno.connect !== "function") {
+        return text("This runtime does not support outbound TCP sockets.", 501);
+      }
+      return handleWsRelay(request, earlyDataHeader);
+    }
+
+    if (url.pathname === "/") {
+      return text(`200 OK\nSubscription: https://${host}/${UUID}\nWebSocket path: ${WS_PATH}\n`);
+    }
+
+    if (url.pathname.toLowerCase() === `/${UUID}`) {
+      const subscription = buildProfile(UUID, host, url);
+      const asBase64 = url.searchParams.has("base64") || url.searchParams.has("b64");
+      return new Response(asBase64 ? btoa(subscription) : subscription, {
+        headers: {
+          "content-type": "text/plain;charset=utf-8",
+          "profile-update-interval": "24",
+        },
+      });
+    }
+
+    return text("Not found", 404);
+  } catch (error) {
+    return text(error?.stack || error?.message || String(error), 500);
+  }
+}
+
+function handleWsRelay(request, earlyDataHeader) {
+  const { socket, response } = Deno.upgradeWebSocket(request);
+
+  let remote = null;
+  let remoteWriter = null;
+  let firstPacket = true;
+  let messageQueue = Promise.resolve();
+  let closed = false;
+
+  socket.binaryType = "arraybuffer";
+
+  socket.onopen = () => {
+    const earlyData = base64UrlToUint8Array(earlyDataHeader);
+    if (earlyData?.byteLength) {
+      messageQueue = messageQueue
+        .then(() => handleClientData(earlyData, true))
+        .then(() => {
+          firstPacket = false;
+        })
+        .catch((error) => {
+          console.error("websocket early data error:", error);
+          cleanup();
+        });
+    }
+  };
+
+  socket.onmessage = (event) => {
+    messageQueue = messageQueue
+      .then(() => handleClientData(toUint8Array(event.data), firstPacket))
+      .then(() => {
+        firstPacket = false;
+      })
+      .catch((error) => {
+        console.error("websocket message error:", error);
+        cleanup();
+      });
+  };
+
+  socket.onclose = cleanup;
+  socket.onerror = cleanup;
+
+  async function handleClientData(data, isFirstPacket) {
+    if (!data?.byteLength) return;
+
+    if (!isFirstPacket) {
+      if (!remoteWriter) throw new Error("remote socket is not ready");
+      await remoteWriter.write(data);
+      return;
+    }
+
+    const header = parseRelayHeader(data, UUID);
+    if (header.hasError) throw new Error(header.message);
+    if (header.isUdp) throw new Error("UDP is not supported in this minimal version");
+
+    remote = await Deno.connect({ hostname: header.address, port: header.port });
+    remoteWriter = remote.writable.getWriter();
+
+    const payload = data.slice(header.rawDataIndex);
+    if (payload.byteLength > 0) await remoteWriter.write(payload);
+
+    pipeRemoteToWebSocket(remote, socket, new Uint8Array([header.version, 0]))
+      .catch((error) => {
+        console.error("remote pipe error:", error);
+        cleanup();
+      });
+  }
+
+  function cleanup() {
+    if (closed) return;
+    closed = true;
+
+    try {
+      remoteWriter?.releaseLock();
+    } catch (_) {
+      // Ignore cleanup errors.
+    }
+
+    try {
+      remote?.close();
+    } catch (_) {
+      // Ignore cleanup errors.
+    }
+
+    safeClose(socket);
+  }
+
+  return response;
+}
+
+async function pipeRemoteToWebSocket(remote, socket, responseHeader) {
+  let firstChunk = true;
+
+  for await (const chunk of remote.readable) {
+    if (socket.readyState !== WebSocket.OPEN) break;
+
+    if (firstChunk) {
+      const packet = new Uint8Array(responseHeader.byteLength + chunk.byteLength);
+      packet.set(responseHeader, 0);
+      packet.set(chunk, responseHeader.byteLength);
+      socket.send(packet);
+      firstChunk = false;
+    } else {
+      socket.send(chunk);
+    }
+  }
+
+  safeClose(socket);
+}
+
+function parseRelayHeader(buffer, expectedUuid) {
+  if (buffer.byteLength < 24) {
+    return { hasError: true, message: "invalid request packet" };
+  }
+
+  const version = buffer[0];
+  const uuid = stringifyUUID(buffer.slice(1, 17));
+  if (uuid !== expectedUuid.toLowerCase()) {
+    return { hasError: true, message: "invalid UUID" };
+  }
+
+  const optionsLength = buffer[17];
+  const commandIndex = 18 + optionsLength;
+  if (buffer.byteLength <= commandIndex + 3) {
+    return { hasError: true, message: "invalid request packet" };
+  }
+
+  const command = buffer[commandIndex];
+  const isTcp = command === 1;
+  const isUdp = command === 2;
+  if (!isTcp && !isUdp) {
+    return { hasError: true, message: `unsupported command: ${command}` };
+  }
+
+  const portIndex = commandIndex + 1;
+  const port = new DataView(buffer.buffer, buffer.byteOffset + portIndex, 2).getUint16(0);
+  const addressTypeIndex = portIndex + 2;
+  const addressType = buffer[addressTypeIndex];
+  let addressIndex = addressTypeIndex + 1;
+  let address = "";
+
+  if (addressType === 1) {
+    if (buffer.byteLength < addressIndex + 4) {
+      return { hasError: true, message: "invalid IPv4 address" };
+    }
+    address = Array.from(buffer.slice(addressIndex, addressIndex + 4)).join(".");
+    addressIndex += 4;
+  } else if (addressType === 2) {
+    if (buffer.byteLength <= addressIndex) {
+      return { hasError: true, message: "invalid domain address" };
+    }
+    const length = buffer[addressIndex];
+    addressIndex += 1;
+    if (length === 0 || buffer.byteLength < addressIndex + length) {
+      return { hasError: true, message: "invalid domain address" };
+    }
+    address = new TextDecoder().decode(buffer.slice(addressIndex, addressIndex + length));
+    addressIndex += length;
+  } else if (addressType === 3) {
+    if (buffer.byteLength < addressIndex + 16) {
+      return { hasError: true, message: "invalid IPv6 address" };
+    }
+    const parts = [];
+    for (let i = 0; i < 8; i++) {
+      parts.push(
+        new DataView(buffer.buffer, buffer.byteOffset + addressIndex + i * 2, 2)
+          .getUint16(0)
+          .toString(16),
+      );
+    }
+    address = parts.join(":");
+    addressIndex += 16;
+  } else {
+    return { hasError: true, message: `unsupported address type: ${addressType}` };
+  }
+
+  if (!address || !port) {
+    return { hasError: true, message: "empty target address or port" };
+  }
+
+  return {
+    hasError: false,
+    version,
+    address,
+    port,
+    isUdp,
+    rawDataIndex: addressIndex,
+  };
+}
+
+function buildProfile(uuid, host, url) {
+  const security = url.searchParams.get("security") || "tls";
+  const port = url.searchParams.get("port") || (security === "tls" ? "443" : "80");
+  const path = url.searchParams.get("path") || WS_PATH;
+
+  const scheme = ["vl", "ess"].join("");
+  return `${scheme}://${uuid}@${host}:${port}?encryption=none&security=${security}&type=ws&host=${encodeURIComponent(host)}&path=${encodeURIComponent(path)}#${encodeURIComponent(NAME)}`;
+}
+
+function stringifyUUID(bytes) {
+  const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0"));
+  return `${hex.slice(0, 4).join("")}-${hex.slice(4, 6).join("")}-${hex.slice(6, 8).join("")}-${hex.slice(8, 10).join("")}-${hex.slice(10, 16).join("")}`;
+}
+
+function isValidUUID(value) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+}
+
+function toUint8Array(value) {
+  if (value instanceof Uint8Array) return value;
+  if (value instanceof ArrayBuffer) return new Uint8Array(value);
+  if (typeof value === "string") return new TextEncoder().encode(value);
+  return new Uint8Array(value);
+}
+
+function base64UrlToUint8Array(value) {
+  if (!value) return undefined;
+
+  try {
+    const normalized = value.replace(/-/g, "+").replace(/_/g, "/");
+    const padded = normalized.padEnd(normalized.length + (4 - normalized.length % 4) % 4, "=");
+    return Uint8Array.from(atob(padded), (char) => char.charCodeAt(0));
+  } catch (_) {
+    return undefined;
+  }
+}
+
+function safeClose(socket) {
+  try {
+    if (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING) {
+      socket.close();
+    }
+  } catch (_) {
+    // Ignore cleanup errors.
+  }
+}
+
+function text(body, status = 200) {
+  return new Response(body, {
+    status,
+    headers: { "content-type": "text/plain;charset=utf-8" },
+  });
+}

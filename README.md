@@ -1,11 +1,11 @@
-# Deno VLESS over WebSocket
+# Deno WebSocket Relay
 
-Minimal VLESS over WebSocket server with a plain subscription endpoint.
+Minimal WebSocket relay server with a plain profile endpoint.
 
 ## Features
 
-- VLESS over WebSocket TCP forwarding
-- Plain VLESS subscription link at `/<UUID>`
+- WebSocket TCP forwarding
+- Plain profile link at `/<UUID>`
 - Optional Base64 subscription with `?base64` or `?b64`
 - 0-RTT early data from `sec-websocket-protocol`
 
@@ -27,8 +27,9 @@ Optional environment variables:
 
 ```bash
 PORT=8000
-NAME=deno-vless
+NAME=edge-link
 HOST=example.com
+WS_PATH=/link
 ```
 
 PowerShell example:
@@ -40,15 +41,15 @@ $env:UUID="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"; deno run --allow-net --allow-e
 ## Endpoints
 
 - `/` shows a basic health message.
-- `/<UUID>` returns a VLESS link.
+- `/<UUID>` returns a client profile link.
 - `/<UUID>?base64` returns the same link encoded with Base64.
-- WebSocket upgrade requests are handled as VLESS over WebSocket connections.
+- WebSocket upgrade requests on `WS_PATH` are handled as relay connections.
 
 ## Client Settings
 
-- Protocol: `vless`
+- Protocol: use the generated profile value
 - Transport: `ws`
-- Path: `/`
+- Path: `/link` by default, or your configured `WS_PATH`
 - TLS: enabled when deployed behind HTTPS
 - UUID: same as the `UUID` environment variable
 
@@ -61,7 +62,7 @@ https://your-domain.example/<UUID>
 Manual node format:
 
 ```text
-vless://<UUID>@your-domain.example:443?encryption=none&security=tls&type=ws&host=your-domain.example&path=%2F#deno-vless
+<generated-profile>://<UUID>@your-domain.example:443?encryption=none&security=tls&type=ws&host=your-domain.example&path=%2Flink#edge-link
 ```
 
 ## Deploy To Deno Deploy
@@ -74,7 +75,7 @@ This project is intended for Deno Deploy / Deno Subhosting style deployments suc
 
 ```text
 UUID=xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
-NAME=deno-vless
+NAME=edge-link
 ```
 
 4. Deploy and open:
@@ -85,4 +86,4 @@ https://your-project.deno.dev/<UUID>
 
 Deno Deploy automatically provides the HTTPS port, so the code does not bind `PORT` there. Local runs still use `PORT` or `8000`.
 
-Important: VLESS proxy forwarding requires outbound TCP socket support. If the Deno Deploy project/runtime does not expose `Deno.connect`, only the subscription endpoint will work and WebSocket proxy requests will return `501`.
+Important: relay forwarding requires outbound TCP socket support. If the Deno Deploy project/runtime does not expose `Deno.connect`, only the profile endpoint will work and WebSocket requests will return `501`.
